@@ -3,6 +3,7 @@ extends KinematicBody2D
 var speed = 1000
 var velocity = Vector2.ZERO
 var bounce_count = 0
+var bounce_count_max = 2
 
 func _ready():
 	add_to_group("drill")
@@ -17,6 +18,6 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision_info.normal)
 		rotation = velocity.angle()
 		bounce_count += 1
-		if bounce_count >= 3:
+		if bounce_count >= bounce_count_max:
 			queue_free()
 
