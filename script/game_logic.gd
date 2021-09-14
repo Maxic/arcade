@@ -2,7 +2,11 @@ extends Node2D
 
 var block_size
 var block_start_height
+var block_speed = .5
 
+# randomize vars
+var total_weight
+var block_dict = {}
 
 # export variables
 export var margin_horizontal = 50 # margin on a single side
@@ -16,8 +20,15 @@ var ruby_block_scene = preload("res://scenes/ruby_block.tscn")
 var diamond_block_scene = preload("res://scenes/diamond_block.tscn")
 
 func _ready():
-	var block_arr = [dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, dirt_block_scene, emerald_block_scene, rock_block_scene, ruby_block_scene, diamond_block_scene]
+	# Populate dict with [roll_weight, acc_weight]
+	block_dict[dirt_block_scene] = 		[3.0, 0.0]
+	block_dict[emerald_block_scene] = 	[0.2, 0.0]
+	block_dict[diamond_block_scene] = 	[0.1, 0.0]
+	block_dict[ruby_block_scene] = 		[0.2, 0.0]
+	block_dict[rock_block_scene] = 		[0.3, 0.0]
 	
+	# initialize the dict so blocks can be picked
+	init_probabilities(block_dict)
 	
 	# Spawn blocks of dirt, from halfway down the screen
 	block_start_height = get_viewport().size.y / 2
@@ -25,10 +36,29 @@ func _ready():
 	
 	for row_i in range(grid_height):
 		for block_i in range(grid_width):
-			block_arr.shuffle()
-			var block_scene = block_arr[0]
-			var block = block_scene.instance()
+			var block = pick_some_object(block_dict).instance()
 			block.position.x = (block_size * block_i) + margin_horizontal
 			block.position.y = (block_size * row_i) + block_start_height
 			add_child(block)
 
+func _physics_process(delta):
+	for block in get_tree().get_nodes_in_group("blocks"):
+		block.position.y -= block_speed
+
+func init_probabilities(object_types) -> void:
+	# Reset total_weight to make sure it holds the correct value after initialization
+	total_weight = 0.0
+	# Iterate through the objects
+	for obj_type in object_types.values():
+		# Take current object weight and accumulate it
+		total_weight += obj_type[0]
+		# Take current sum and assign to the object.
+		obj_type[1] = total_weight
+
+func pick_some_object(object_types):
+	# Roll the number
+	var roll: float = rand_range(0.0, total_weight)
+	# Now search for the first with acc_weight > roll
+	for obj_type in object_types:
+		if (object_types[obj_type][1] > roll):
+			return obj_type

@@ -17,11 +17,11 @@ shader = SubResource( 1 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 70, 70 )
 
-[node name="dirt_block" type="Area2D"]
+[node name="block" type="Area2D"]
 material = SubResource( 2 )
 script = ExtResource( 2 )
 
-[node name="dirt_sprite" type="Sprite" parent="."]
+[node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 
