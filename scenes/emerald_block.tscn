@@ -22,6 +22,7 @@ material = SubResource( 2 )
 script = ExtResource( 2 )
 
 [node name="dirt_sprite" type="Sprite" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( 2.82849, 0 )
 texture = ExtResource( 1 )
 centered = false
