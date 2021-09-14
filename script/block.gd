@@ -16,8 +16,11 @@ var particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 
 # global vars
 var gem_scene
+var block_type
 
 func _init(type):
+	self.block_type = type
+	
 	# General initialization needed for all types of blocks
 	var sprite = Sprite.new()
 	sprite.centered = false
@@ -50,6 +53,7 @@ func _init(type):
 
 func destroy(body):
 	if body.is_in_group("drill"):
+		body.blocks_destroyed += 1
 		get_node("/root/main/shake_cam").trigger_shake = true
 		
 		# particles
