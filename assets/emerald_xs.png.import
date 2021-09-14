@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emeralds_xs.png-6dc43f88dd40a3730cf55a15175acf95.stex"
+path="res://.import/emerald_xs.png-fbe0de2f4f074c305045830a5deeaa04.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/emeralds_xs.png"
-dest_files=[ "res://.import/emeralds_xs.png-6dc43f88dd40a3730cf55a15175acf95.stex" ]
+source_file="res://assets/emerald_xs.png"
+dest_files=[ "res://.import/emerald_xs.png-fbe0de2f4f074c305045830a5deeaa04.stex" ]
 
 [params]
 
