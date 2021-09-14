@@ -11,7 +11,7 @@ func _on_dirt_block_body_entered(body):
 		get_node("/root/main/shake_cam").trigger_shake = true
 		
 		var particles = particles_scene.instance()
-		particles.position = global_position
+		particles.position = Vector2(global_position.x + 70, global_position.y + 70)
 		particles.emitting = true
 		get_parent().add_child(particles)
 		
