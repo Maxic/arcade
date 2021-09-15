@@ -17,6 +17,7 @@ var particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 # global vars
 var gem_scene
 var block_type
+var block_hp
 
 func _init(type):
 	self.block_type = type
@@ -35,25 +36,35 @@ func _init(type):
 	if type == "dirt":
 		sprite.texture = dirt_sprite
 		gem_scene = null
+		block_hp = 1
 	elif type == "emerald":
 		sprite.texture = emerald_sprite
 		gem_scene = gem_emerald_scene
+		block_hp = 2
 	elif type == "diamond":
 		sprite.texture = diamond_sprite
 		gem_scene = gem_diamond_scene
+		block_hp = 2
 	elif type == "ruby":
 		sprite.texture = ruby_sprite
 		gem_scene = gem_ruby_scene
+		block_hp = 2
 	elif type == "rock":
 		sprite.texture = rock_sprite
 		gem_scene = null
+		block_hp = 3
 
 	# add children
 	add_child(sprite)
 
+func damage(body):
+	block_hp -= 1
+	if body.is_in_group("drill"):
+		body.blocks_hit += 1
+	
 func destroy(body):
 	if body.is_in_group("drill"):
-		body.blocks_destroyed += 1
+		body.blocks_hit += 1
 		get_node("/root/main/shake_cam").trigger_shake = true
 		
 		# particles
