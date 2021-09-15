@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Block",
 "language": "GDScript",
 "path": "res://script/block.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Drill",
+"language": "GDScript",
+"path": "res://script/drill.gd"
 } ]
 _global_script_class_icons={
-"Block": ""
+"Block": "",
+"Drill": ""
 }
 
 [application]

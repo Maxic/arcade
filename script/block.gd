@@ -61,10 +61,10 @@ func damage(body):
 	block_hp -= 1
 	if body.is_in_group("drill"):
 		body.blocks_hit += 1
+		
 	
 func destroy(body):
 	if body.is_in_group("drill"):
-		body.blocks_hit += 1
 		get_node("/root/main/shake_cam").trigger_shake = true
 		
 		# particles
