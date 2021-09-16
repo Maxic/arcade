@@ -33,27 +33,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ui" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="score_label" type="Label" parent="ui"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = 7.86201
-margin_top = 10.6787
-margin_right = 42.862
-margin_bottom = 24.6787
-rect_scale = Vector2( 5, 5 )
-text = "Score"
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="bot" parent="." instance=ExtResource( 2 )]
 
 [node name="wall_left" type="StaticBody2D" parent="."]
@@ -95,5 +74,25 @@ environment = SubResource( 3 )
 position = Vector2( 524.127, 793.75 )
 scale = Vector2( 8.76485, 12.3393 )
 texture = ExtResource( 6 )
+
+[node name="ui_layer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ui" type="Control" parent="ui_layer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_label" type="Label" parent="ui_layer/ui"]
+margin_right = 35.0
+margin_bottom = 14.0
+rect_scale = Vector2( 5, 5 )
+text = "Score"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="area_entered" from="area_up" to="area_up" method="_on_area_up_area_entered"]
