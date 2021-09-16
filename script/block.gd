@@ -18,6 +18,7 @@ var particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 var gem_scene
 var type
 var block_hp
+var score
 
 func _init(block_type):
 	self.type = block_type
@@ -37,22 +38,27 @@ func _init(block_type):
 		sprite.texture = dirt_sprite
 		gem_scene = null
 		block_hp = 1
+		score = 1
 	elif type == "emerald":
 		sprite.texture = emerald_sprite
 		gem_scene = gem_emerald_scene
 		block_hp = 2
+		score = 200
 	elif type == "diamond":
 		sprite.texture = diamond_sprite
 		gem_scene = gem_diamond_scene
 		block_hp = 2
+		score = 500
 	elif type == "ruby":
 		sprite.texture = ruby_sprite
 		gem_scene = gem_ruby_scene
 		block_hp = 2
+		score = 300
 	elif type == "rock":
 		sprite.texture = rock_sprite
 		gem_scene = null
 		block_hp = 3
+		score = 1
 
 	# add children
 	add_child(sprite)
@@ -78,5 +84,7 @@ func destroy(body):
 			var gem = gem_scene.instance()
 			gem.position = Vector2(global_position.x + 70, global_position.y + 70)
 			get_parent().add_child(gem)
+		
+		GameState.score += score
 		
 		queue_free()

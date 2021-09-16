@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://script/game_logic.gd" type="Script" id=1]
 [ext_resource path="res://scenes/bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/shake_cam.gd" type="Script" id=3]
 [ext_resource path="res://assets/bg.png" type="Texture" id=4]
+[ext_resource path="res://script/score_label.gd" type="Script" id=5]
 [ext_resource path="res://assets/dirt_xs.png" type="Texture" id=6]
 [ext_resource path="res://script/area_up.gd" type="Script" id=7]
 
@@ -32,6 +33,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ui" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_label" type="Label" parent="ui"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 7.86201
+margin_top = 10.6787
+margin_right = 42.862
+margin_bottom = 24.6787
+rect_scale = Vector2( 5, 5 )
+text = "Score"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="bot" parent="." instance=ExtResource( 2 )]
 
 [node name="wall_left" type="StaticBody2D" parent="."]
@@ -54,7 +76,7 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="area_up" type="Area2D" parent="."]
-position = Vector2( 540, 0 )
+position = Vector2( 540, 200 )
 rotation = 1.5708
 script = ExtResource( 7 )
 
