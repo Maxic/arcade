@@ -9,6 +9,7 @@ var velocity = Vector2.ZERO
 var bounce_count = 0
 var bounce_count_max
 var hp
+var recoil
 
 func _init(drill_level):
 	add_to_group("drill")
@@ -21,25 +22,29 @@ func _init(drill_level):
 	# Add collider node
 	var collider = CollisionShape2D.new()
 	var shape = CircleShape2D.new()
-	shape.radius = 25
+	shape.radius = 10
 	collider.shape = shape
-	collider.position = Vector2(5, 0)
+	
 	
 	# level specific drill properties
 	if drill_level == 1:
 		sprite.scale = Vector2(.6, .4)
 		bounce_count_max = 1
 		hp = 1		
+		collider.position = Vector2(25, 0)
 	elif drill_level == 2:
 		sprite.scale = Vector2(1, .8)
 		bounce_count_max = 2
-		hp = 5
+		hp = 10
+		collider.position = Vector2(60, 0)
 	elif drill_level == 3:
 		sprite.scale = Vector2(2, 1.6)
 		bounce_count_max = 3
-		hp = 20
+		hp = 15
+		collider.position = Vector2(135, 0)
 	
 	# add children
+
 	add_child(sprite)
 	add_child(collider)
 
@@ -48,6 +53,9 @@ func _physics_process(delta):
 		queue_free()
 	
 	velocity = speed * transform.x * delta
+	if recoil:
+		velocity *= -2
+		recoil = false
 	var collision_info = move_and_collide(velocity)
 	
 	if collision_info:
@@ -56,4 +64,7 @@ func _physics_process(delta):
 		bounce_count += 1
 		if bounce_count >= bounce_count_max:
 			queue_free()
-	
+
+func recoil():
+	recoil = true	
+
