@@ -1,13 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://script/drill_orbit.gd" type="Script" id=1]
 [ext_resource path="res://assets/ship_D.png" type="Texture" id=2]
-[ext_resource path="res://assets/meteor_small.png" type="Texture" id=3]
+[ext_resource path="res://assets/robot.png" type="Texture" id=3]
 [ext_resource path="res://script/bot.gd" type="Script" id=4]
+[ext_resource path="res://assets/robody.png" type="Texture" id=5]
 
-[node name="bot" type="Sprite"]
+[node name="head" type="Sprite"]
+light_mask = 2
+position = Vector2( 0, 1 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
+
+[node name="body" type="Sprite" parent="."]
+position = Vector2( 0, -80 )
+z_index = -1
+texture = ExtResource( 5 )
 
 [node name="drill_orbit" type="Node2D" parent="."]
 script = ExtResource( 1 )
