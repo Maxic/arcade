@@ -66,7 +66,7 @@ func _init(block_type):
 func damage(body):
 	block_hp -= 1
 	if body.is_in_group("drill"):
-		body.blocks_hit += 1
+		body.hp -= 1
 		
 	
 func destroy(body):

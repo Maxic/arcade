@@ -5,3 +5,5 @@ func _on_area_up_area_entered(area):
 	if block is Block:
 		if block.type == "rock":
 			GameState.dead = true
+		else:
+			block.queue_free()
