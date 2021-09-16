@@ -5,7 +5,7 @@ var drill_level = 1
 
 func _ready():
 	var x_pos = get_viewport().size.x / 2
-	var y_pos = get_viewport().size.y / 25
+	var y_pos = get_viewport().size.y / 16
 	global_position = Vector2(x_pos, y_pos)
 
 func _physics_process(delta):
