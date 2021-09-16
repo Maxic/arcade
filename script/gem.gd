@@ -19,3 +19,5 @@ func _process(delta):
 	if delta_sum > 1.5:
 		t += delta * 0.4
 		global_position = global_position.linear_interpolate(Vector2(0,0), t)
+		if global_position == Vector2(0,0):
+			queue_free()

@@ -7,12 +7,13 @@
 [ext_resource path="res://assets/robody.png" type="Texture" id=5]
 
 [node name="head" type="Sprite"]
-light_mask = 2
+light_mask = 0
 position = Vector2( 0, 1 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="body" type="Sprite" parent="."]
+light_mask = 0
 position = Vector2( 0, -80 )
 z_index = -1
 texture = ExtResource( 5 )

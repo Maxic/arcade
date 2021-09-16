@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/gem_diamond.png" type="Texture" id=1]
-[ext_resource path="res://script/gem_diamond.gd" type="Script" id=2]
+[ext_resource path="res://script/gem.gd" type="Script" id=2]
 
 [node name="Sprite" type="Sprite"]
 texture = ExtResource( 1 )
