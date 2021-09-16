@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://script/game_logic.gd" type="Script" id=1]
 [ext_resource path="res://scenes/bot.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://script/score_label.gd" type="Script" id=5]
 [ext_resource path="res://assets/dirt_xs.png" type="Texture" id=6]
 [ext_resource path="res://script/area_up.gd" type="Script" id=7]
+[ext_resource path="res://block_speed_timer.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 960 )
@@ -34,6 +35,7 @@ __meta__ = {
 }
 
 [node name="bot" parent="." instance=ExtResource( 2 )]
+z_index = 10
 
 [node name="wall_left" type="StaticBody2D" parent="."]
 position = Vector2( 0, 960 )
@@ -95,4 +97,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="block_speed_timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 8 )
+
 [connection signal="area_entered" from="area_up" to="area_up" method="_on_area_up_area_entered"]
+[connection signal="timeout" from="block_speed_timer" to="block_speed_timer" method="_on_block_speed_timer_timeout"]

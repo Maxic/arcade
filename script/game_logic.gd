@@ -2,7 +2,7 @@ extends Node2D
 
 var block_size
 var block_start_height
-var block_speed = 2
+var block_speed
 
 # randomize vars
 var total_weight
@@ -40,7 +40,7 @@ func _physics_process(_delta):
 		return
 		
 	for block in get_tree().get_nodes_in_group("blocks"):
-		block.position.y -= block_speed
+		block.position.y -= GameState.block_speed
 
 func init_probabilities(object_types) -> void:
 	# Reset total_weight to make sure it holds the correct value after initialization

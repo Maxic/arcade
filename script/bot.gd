@@ -15,10 +15,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
 		charging_time += 1
 		
-		if charging_time > 120:
+		if charging_time > 90:
 			drill_level = 3
 			$drill_orbit/drill_static.scale = Vector2(2, 2)
-		elif charging_time > 30:
+		elif charging_time > 60:
 			drill_level = 2
 			$drill_orbit/drill_static.scale = Vector2(1.4, 1.4)
 		else:

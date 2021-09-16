@@ -5,4 +5,3 @@ func _on_area_up_area_entered(area):
 	if block is Block:
 		if block.type == "rock":
 			GameState.dead = true
-			GameState.score = str(GameState.score) + " dead.."
