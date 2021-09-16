@@ -29,6 +29,10 @@ _global_script_class_icons={
 config/name="Arcade"
 run/main_scene="res://main.tscn"
 
+[autoload]
+
+GameState="*res://script/game_state.gd"
+
 [display]
 
 window/size/width=1080

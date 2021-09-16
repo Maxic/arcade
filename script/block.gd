@@ -16,11 +16,11 @@ var particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 
 # global vars
 var gem_scene
-var block_type
+var type
 var block_hp
 
-func _init(type):
-	self.block_type = type
+func _init(block_type):
+	self.type = block_type
 	
 	# General initialization needed for all types of blocks
 	var sprite = Sprite.new()

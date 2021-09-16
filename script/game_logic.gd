@@ -2,7 +2,7 @@ extends Node2D
 
 var block_size
 var block_start_height
-var block_speed = .5
+var block_speed = 2
 
 # randomize vars
 var total_weight
@@ -36,6 +36,9 @@ func _ready():
 			add_child(block)
 
 func _physics_process(_delta):
+	if GameState.dead:
+		return
+		
 	for block in get_tree().get_nodes_in_group("blocks"):
 		block.position.y -= block_speed
 

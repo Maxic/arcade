@@ -9,6 +9,9 @@ func _ready():
 	global_position = Vector2(x_pos, y_pos)
 
 func _physics_process(delta):
+	if GameState.dead:
+		return
+	
 	if Input.is_action_pressed("shoot"):
 		charging_time += 1
 		
