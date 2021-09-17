@@ -64,9 +64,12 @@ func _init(block_type):
 	add_child(sprite)
 
 func damage(body):
-	block_hp -= 1
 	if body.is_in_group("drill"):
-		body.blocks_hit += 1
+		block_hp -= 1
+		body.hp -= 1
+		if block_hp != 0:
+			body.recoil()
+		
 		
 	
 func destroy(body):

@@ -1,6 +1,9 @@
 extends Area2D
 
 func _on_block_collider_body_entered(body):
-	get_parent().damage(body)
-	if get_parent().block_hp < 1:
-		get_parent().destroy(body)
+	
+	if body.is_in_group("drill"):
+		get_parent().damage(body)
+		scale *= .95
+		if get_parent().block_hp < 1:
+			get_parent().destroy(body)

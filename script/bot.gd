@@ -12,6 +12,9 @@ func _physics_process(delta):
 	if GameState.dead:
 		return
 	
+	# default scale is 1.1
+	$drill_orbit/drill_static.scale = Vector2(1, 1)
+	
 	if Input.is_action_pressed("shoot"):
 		charging_time += 1
 		
@@ -21,8 +24,7 @@ func _physics_process(delta):
 		elif charging_time > 60:
 			drill_level = 2
 			$drill_orbit/drill_static.scale = Vector2(1.4, 1.4)
-		else:
-			$drill_orbit/drill_static.scale = Vector2(1, 1)
+			
 	
 	if Input.is_action_just_released("shoot"):
 		var drill_bullet = Drill.new(drill_level)
