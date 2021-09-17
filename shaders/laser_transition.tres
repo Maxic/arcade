@@ -1,0 +1,43 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://assets/laser_trans_mask.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+uniform sampler2D mask : hint_albedo;
+uniform float cutoff : hint_range(0.0, 1.0);
+uniform float burning_edge_width : hint_range(0.0, .3);
+
+float pulse(float time) {
+    const float pi = 3.14;
+    const float frequency = .5; // Frequency in Hz
+    return 0.5*(1f+sin(2f * pi * frequency * time));
+}
+
+void fragment(){
+	vec4 image = texture(TEXTURE, UV);
+	float value = texture(mask, UV).r;
+	float alpha = step(cutoff, value);
+	float close_to_cutoff = cutoff + burning_edge_width;
+
+	if (value <= cutoff){
+		image.a = 0.0;
+	} else {
+		if (value <= close_to_cutoff){
+			// create fire color
+			vec4 red = vec4(1.0,0.0,0.0,1.0);
+			vec4 yellow = vec4(1.000,0.833,0.224, 1.0);
+			image = mix(red, yellow, sin(pulse(TIME*2f)))
+		} else {
+			image.a = 1.0;	
+		}
+	}
+	COLOR = image;
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/cutoff = 0.0
+shader_param/burning_edge_width = 0.183
+shader_param/mask = ExtResource( 1 )

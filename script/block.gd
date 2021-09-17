@@ -14,20 +14,27 @@ var gem_emerald_scene = preload("res://scenes/gem_emerald.tscn")
 var collider_scene = preload("res://scenes/block_collider.tscn")
 var particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 
+var laser_transition_material = preload("res://shaders/laser_transition.tres")
+
 # global vars
 var gem_scene
 var type
 var block_hp
 var score
+var sprite
+var collider
+var destroyed_by_laser = false
+var cutoff = 0
 
 func _init(block_type):
 	self.type = block_type
 	
 	# General initialization needed for all types of blocks
-	var sprite = Sprite.new()
+	sprite = Sprite.new()
 	sprite.centered = false
+
 	
-	var collider = collider_scene.instance()
+	collider = collider_scene.instance()
 	collider.position = Vector2(collider.position.x + 70, collider.position.y + 70)
 	add_child(collider)
 	
@@ -63,15 +70,25 @@ func _init(block_type):
 	# add children
 	add_child(sprite)
 
+func _physics_process(delta):
+	if destroyed_by_laser:
+		sprite.material = laser_transition_material 
+		if collider:
+			collider.queue_free()
+			collider = null
+		cutoff += .008
+		if cutoff >= 1:
+			queue_free()
+		sprite.material.set_shader_param("cutoff", cutoff)
+		
 func damage(body):
 	if body.is_in_group("drill"):
 		block_hp -= 1
 		body.hp -= 1
 		if block_hp != 0:
 			body.recoil()
+
 		
-		
-	
 func destroy(body):
 	if body.is_in_group("drill"):
 		get_node("/root/main/shake_cam").trigger_shake = true

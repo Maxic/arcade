@@ -6,4 +6,4 @@ func _on_area_up_area_entered(area):
 		if block.type == "rock":
 			GameState.dead = true
 		else:
-			block.queue_free()
+			block.destroyed_by_laser = true
