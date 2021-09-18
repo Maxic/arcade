@@ -75,5 +75,5 @@ animations = [ {
 [node name="drill_spinning" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "spin"
-frame = 53
+frame = 35
 playing = true
