@@ -1,20 +1,25 @@
 extends Node2D
 class_name Block
 
-# preload assets and scenes
+# preload assets 
 var rock_sprite = preload("res://assets/exploderock_xs.png")
 var diamond_sprite = preload("res://assets/diamond_xs.png")
 var emerald_sprite = preload("res://assets/emerald_xs.png")
 var dirt_sprite = preload("res://assets/dirt_xs.png")
 var ruby_sprite = preload("res://assets/ruby_xs.png")
 
+# preload scenes
 var gem_diamond_scene = preload("res://scenes/gem_diamond.tscn")
 var gem_ruby_scene = preload("res://scenes/gem_ruby.tscn")
 var gem_emerald_scene = preload("res://scenes/gem_emerald.tscn")
 var collider_scene = preload("res://scenes/block_collider.tscn")
-var particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 
+var dirt_particles_scene = preload("res://scenes/dirt_block_particles.tscn")
+var explosion_particles_scene = preload("res://scenes/explosion.tscn")
+
+# preload shaders
 var laser_transition_material = preload("res://shaders/laser_transition.tres")
+
 
 # global vars
 var gem_scene
@@ -91,18 +96,22 @@ func damage(body):
 		body.hp -= 1
 		if block_hp != 0:
 			body.recoil()
-
 		
 func destroy(body):
 	if body.is_in_group("drill"):
 		get_node("/root/main/shake_cam").trigger_shake = true
 		
+		var particles
+		
 		# particles
-		var particles = particles_scene.instance()
+		if type == "rock":
+			particles = explosion_particles_scene.instance()
+		else:
+			particles = dirt_particles_scene.instance()
 		particles.position = Vector2(global_position.x + 70, global_position.y + 70)
 		particles.emitting = true
 		get_parent().add_child(particles)
-		
+			
 		# gem 
 		if gem_scene:
 			var gem = gem_scene.instance()
