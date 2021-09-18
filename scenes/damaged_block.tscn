@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 2
+light_mode = 1
+
+[sub_resource type="OpenSimplexNoise" id=2]
+octaves = 1
+period = 13.4
+persistence = 0.775
+lacunarity = 1.91
+
+[sub_resource type="NoiseTexture" id=3]
+width = 140
+height = 140
+seamless = true
+noise = SubResource( 2 )
+
+[node name="damaged_block" type="Node2D"]
+z_index = 100
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.137255 )
+material = SubResource( 1 )
+margin_left = 0.890869
+margin_top = 0.8909
+margin_right = 140.891
+margin_bottom = 140.891
+texture = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

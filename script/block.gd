@@ -13,6 +13,9 @@ var gem_diamond_scene = preload("res://scenes/gem_diamond.tscn")
 var gem_ruby_scene = preload("res://scenes/gem_ruby.tscn")
 var gem_emerald_scene = preload("res://scenes/gem_emerald.tscn")
 var collider_scene = preload("res://scenes/block_collider.tscn")
+var damaged_block_scene = preload("res://scenes/damaged_block.tscn")
+
+var damaged_block
 
 var dirt_particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 var explosion_particles_scene = preload("res://scenes/explosion.tscn")
@@ -40,8 +43,7 @@ func _init(block_type):
 	# General initialization needed for all types of blocks
 	sprite = Sprite.new()
 	sprite.centered = false
-
-	
+		
 	collider = collider_scene.instance()
 	collider.position = Vector2(collider.position.x + 70, collider.position.y + 70)
 	add_child(collider)
@@ -91,11 +93,15 @@ func _physics_process(delta):
 		sprite.material.set_shader_param("cutoff", cutoff)
 		
 func damage(body):
+	# damaged_block scene adds a noise texture to make a block look damaged
+	var damaged_block = damaged_block_scene.instance()
 	if body.is_in_group("drill"):
 		block_hp -= 1
 		body.hp -= 1
 		if block_hp != 0:
 			body.recoil()
+			add_child(damaged_block)
+			print(self.name)
 		
 func destroy(object):
 	if object.is_in_group("explosion"):
