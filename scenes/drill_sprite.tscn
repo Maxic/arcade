@@ -70,10 +70,10 @@ animations = [ {
 "speed": 100.0
 } ]
 
-[node name="Node2D" type="Node2D"]
+[node name="drill_sprite" type="Node2D"]
 
 [node name="drill_spinning" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "spin"
-frame = 35
+frame = 48
 playing = true
