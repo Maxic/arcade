@@ -2,7 +2,7 @@ extends Node2D
 class_name Block
 
 # preload assets and scenes
-var rock_sprite = preload("res://assets/rock_xs.png")
+var rock_sprite = preload("res://assets/exploderock_xs.png")
 var diamond_sprite = preload("res://assets/diamond_xs.png")
 var emerald_sprite = preload("res://assets/emerald_xs.png")
 var dirt_sprite = preload("res://assets/dirt_xs.png")

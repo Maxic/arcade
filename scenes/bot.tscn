@@ -2,23 +2,23 @@
 
 [ext_resource path="res://script/drill_orbit.gd" type="Script" id=1]
 [ext_resource path="res://assets/ship_D.png" type="Texture" id=2]
-[ext_resource path="res://assets/robot.png" type="Texture" id=3]
+[ext_resource path="res://assets/newbot.png" type="Texture" id=3]
 [ext_resource path="res://script/bot.gd" type="Script" id=4]
 [ext_resource path="res://assets/robody.png" type="Texture" id=5]
 
 [node name="head" type="Sprite"]
 light_mask = 0
-position = Vector2( 0, 1 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="body" type="Sprite" parent="."]
 light_mask = 0
-position = Vector2( 0, -80 )
+position = Vector2( -7.85718, -40.7551 )
 z_index = -1
 texture = ExtResource( 5 )
 
 [node name="drill_orbit" type="Node2D" parent="."]
+position = Vector2( -8.97961, 91.2247 )
 script = ExtResource( 1 )
 
 [node name="drill_static" type="Sprite" parent="drill_orbit"]
