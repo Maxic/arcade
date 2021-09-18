@@ -14,6 +14,13 @@ export var grid_height = 100
 export var grid_width = 7
 
 func _ready():
+	# add drill to world
+	var drill = Drill.new(2)
+	drill.name = "drill"
+	GameState.drill_node = drill
+	drill.set_level(1)
+	add_child(drill)
+	
 	# Populate dict with [roll_weight, acc_weight]
 	block_dict["dirt"] = 	[3.0, 0.0]
 	block_dict["emerald"] = [0.2, 0.0]

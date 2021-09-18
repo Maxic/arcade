@@ -10,6 +10,7 @@ var bounce_count = 0
 var bounce_count_max
 var hp
 var recoil
+var active = false
 
 func _init(drill_level):
 	add_to_group("drill")
@@ -33,7 +34,7 @@ func _init(drill_level):
 	elif drill_level == 2:
 		sprite.scale = Vector2(0.75, 0.75)
 		bounce_count_max = 2
-		hp = 10
+		hp = 5
 		collider.position = Vector2(60, 0)
 	elif drill_level == 3:
 		sprite.scale = Vector2(1, 1)
@@ -45,24 +46,51 @@ func _init(drill_level):
 	add_child(sprite)
 	add_child(collider)
 
+func reset():
+	active = false
+	set_level(1)
+
 func _physics_process(delta):
-	if hp == 0:
+	if not active:
+		global_position = lerp(global_position, GameState.drill_pos, .15)
+		rotation_degrees = GameState.drill_rotation
+	
+	if hp == 0 or bounce_count >= bounce_count_max:
+		reset()
 		
-		queue_free()
-	
-	velocity = speed * transform.x * delta
-	if recoil:
-		velocity *= -2
-		recoil = false
-	var collision_info = move_and_collide(velocity)
-	
-	if collision_info:
-		velocity = velocity.bounce(collision_info.normal)
-		rotation = velocity.angle()
-		bounce_count += 1
-		if bounce_count >= bounce_count_max:
-			queue_free()
+	if active:
+		velocity = speed * transform.x * delta
+		if recoil:
+			velocity *= -2
+			recoil = false
+		var collision_info = move_and_collide(velocity)
+		
+		if collision_info:
+			velocity = velocity.bounce(collision_info.normal)
+			rotation = velocity.angle()
+			bounce_count += 1
+
 
 func recoil():
 	recoil = true	
 
+func set_level(level):
+	if not active:
+		if level == 3:
+			scale = Vector2(1.5, 1.5)
+			bounce_count = 0
+			bounce_count_max = 3
+			hp = 15
+			return
+		if level == 2:
+			scale = Vector2(1.0, 1.0)
+			bounce_count = 0
+			bounce_count_max = 2
+			hp = 5
+			return
+		if level == 1:
+			scale = Vector2(.7, .7)
+			bounce_count = 0
+			bounce_count_max = 1
+			hp = 1	
+		
