@@ -52,7 +52,10 @@ func reset():
 
 func _physics_process(delta):
 	if not active:
-		global_position = lerp(global_position, GameState.drill_pos, .15)
+		if abs(global_position.y - GameState.drill_pos.y) < 20:
+			global_position = lerp(global_position, GameState.drill_pos, .9)
+		else:
+			global_position = lerp(global_position, GameState.drill_pos, .15)
 		rotation_degrees = GameState.drill_rotation
 	
 	if hp == 0 or bounce_count >= bounce_count_max:
@@ -91,6 +94,6 @@ func set_level(level):
 		if level == 1:
 			scale = Vector2(.7, .7)
 			bounce_count = 0
-			bounce_count_max = 0
+			bounce_count_max = 1
 			hp = 1	
 		

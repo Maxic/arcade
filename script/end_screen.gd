@@ -14,5 +14,6 @@ func _physics_process(delta):
 	
 	if delta_sum > 3:
 		#restart game
-		queue_free()
+		GameState.reset()
+		get_tree().reload_current_scene()
 	
