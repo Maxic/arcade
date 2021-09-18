@@ -24,7 +24,6 @@ func _init(drill_level):
 	shape.radius = 10
 	collider.shape = shape
 	
-	
 	# level specific drill properties
 	if drill_level == 1:
 		sprite.scale = Vector2(.5, .5)
@@ -43,12 +42,12 @@ func _init(drill_level):
 		collider.position = Vector2(135, 0)
 	
 	# add children
-
 	add_child(sprite)
 	add_child(collider)
 
 func _physics_process(delta):
 	if hp == 0:
+		
 		queue_free()
 	
 	velocity = speed * transform.x * delta

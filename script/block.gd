@@ -97,13 +97,34 @@ func damage(body):
 		if block_hp != 0:
 			body.recoil()
 		
-func destroy(body):
-	if body.is_in_group("drill"):
+func destroy(object):
+	if object.is_in_group("explosion"):
+				
+		# particles
+		var particles
+		if type == "rock":
+			particles = explosion_particles_scene.instance()
+		else:
+			particles = dirt_particles_scene.instance()
+		particles.position = Vector2(global_position.x + 70, global_position.y + 70)
+		particles.emitting = true
+		get_parent().add_child(particles)
+			
+		# gem 
+		if gem_scene:
+			var gem = gem_scene.instance()
+			gem.position = Vector2(global_position.x + 70, global_position.y + 70)
+			get_parent().add_child(gem)
+		
+		GameState.score += score
+		
+		queue_free()
+	
+	if object.is_in_group("drill"):
 		get_node("/root/main/shake_cam").trigger_shake = true
 		
-		var particles
-		
 		# particles
+		var particles
 		if type == "rock":
 			particles = explosion_particles_scene.instance()
 		else:

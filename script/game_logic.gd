@@ -19,7 +19,7 @@ func _ready():
 	block_dict["emerald"] = [0.2, 0.0]
 	block_dict["diamond"] = [0.1, 0.0]
 	block_dict["ruby"] = 	[0.2, 0.0]
-	block_dict["rock"] = 	[0.3, 0.0]
+	block_dict["rock"] = 	[1.3, 0.0]
 	
 	# initialize the dict so blocks can be picked
 	init_probabilities(block_dict)
