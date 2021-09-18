@@ -26,6 +26,9 @@ var collider
 var destroyed_by_laser = false
 var cutoff = 0
 
+# constants
+const LASER_TRANSISTION_SPEED = 0.01
+
 func _init(block_type):
 	self.type = block_type
 	
@@ -76,8 +79,9 @@ func _physics_process(delta):
 		if collider:
 			collider.queue_free()
 			collider = null
-		cutoff += .008
+		cutoff += LASER_TRANSISTION_SPEED * GameState.block_speed
 		if cutoff >= 1:
+			destroyed_by_laser = false
 			queue_free()
 		sprite.material.set_shader_param("cutoff", cutoff)
 		
