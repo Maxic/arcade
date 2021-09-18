@@ -63,6 +63,13 @@ rotation = 1.5708
 [node name="wall_collider_horizontal" type="CollisionShape2D" parent="wall_down"]
 shape = SubResource( 2 )
 
+[node name="wall_up" type="StaticBody2D" parent="."]
+position = Vector2( 540, 180 )
+rotation = 1.5708
+
+[node name="wall_collider_horizontal" type="CollisionShape2D" parent="wall_up"]
+shape = SubResource( 2 )
+
 [node name="area_up" type="Area2D" parent="."]
 position = Vector2( 540, 200 )
 rotation = 1.5708

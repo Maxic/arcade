@@ -79,18 +79,18 @@ func set_level(level):
 		if level == 3:
 			scale = Vector2(1.5, 1.5)
 			bounce_count = 0
-			bounce_count_max = 3
+			bounce_count_max = 2
 			hp = 15
 			return
 		if level == 2:
 			scale = Vector2(1.0, 1.0)
 			bounce_count = 0
-			bounce_count_max = 2
+			bounce_count_max = 1
 			hp = 5
 			return
 		if level == 1:
 			scale = Vector2(.7, .7)
 			bounce_count = 0
-			bounce_count_max = 1
+			bounce_count_max = 0
 			hp = 1	
 		
