@@ -13,17 +13,17 @@ func _physics_process(delta):
 		return
 	
 	# default scale is 1.1
-	$drill_orbit/drill_static.scale = Vector2(1, 1)
+	$drill_orbit/drill_static.scale = Vector2(0.5, 0.5)
 	
 	if Input.is_action_pressed("shoot"):
 		charging_time += 1
 		
 		if charging_time > 90:
 			drill_level = 3
-			$drill_orbit/drill_static.scale = Vector2(2, 2)
+			$drill_orbit/drill_static.scale = Vector2(1, 1)
 		elif charging_time > 60:
 			drill_level = 2
-			$drill_orbit/drill_static.scale = Vector2(1.4, 1.4)
+			$drill_orbit/drill_static.scale = Vector2(0.75, 0.75)
 			
 	
 	if Input.is_action_just_released("shoot"):

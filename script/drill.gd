@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Drill
 
 # Preload assets
-var sprite_asset = preload("res://assets/drill_white.png")
+var sprite_asset = preload("res://scenes/drill_sprite.tscn")
 
 var speed = 1000
 var velocity = Vector2.ZERO
@@ -15,9 +15,8 @@ func _init(drill_level):
 	add_to_group("drill")
 	
 	# Add sprite node
-	var sprite = Sprite.new()
-	sprite.texture = sprite_asset
-	sprite.rotation_degrees = -90
+	var sprite = sprite_asset.instance()
+	sprite.rotation_degrees = 90
 	
 	# Add collider node
 	var collider = CollisionShape2D.new()
@@ -28,17 +27,17 @@ func _init(drill_level):
 	
 	# level specific drill properties
 	if drill_level == 1:
-		sprite.scale = Vector2(.6, .4)
+		sprite.scale = Vector2(.5, .5)
 		bounce_count_max = 1
 		hp = 1		
 		collider.position = Vector2(25, 0)
 	elif drill_level == 2:
-		sprite.scale = Vector2(1, .8)
+		sprite.scale = Vector2(0.75, 0.75)
 		bounce_count_max = 2
 		hp = 10
 		collider.position = Vector2(60, 0)
 	elif drill_level == 3:
-		sprite.scale = Vector2(2, 1.6)
+		sprite.scale = Vector2(1, 1)
 		bounce_count_max = 3
 		hp = 15
 		collider.position = Vector2(135, 0)
