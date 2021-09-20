@@ -101,7 +101,6 @@ func damage(body):
 		if block_hp != 0:
 			body.recoil()
 			add_child(damaged_block)
-			print(self.name)
 		
 func destroy(object):
 	if object.is_in_group("explosion"):
