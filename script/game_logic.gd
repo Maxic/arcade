@@ -3,6 +3,7 @@ extends Node2D
 var block_size
 var block_start_height
 var block_speed
+var block_arr = []
 
 # randomize vars
 var total_weight
@@ -10,7 +11,7 @@ var block_dict = {}
 
 # export variables
 export var margin_horizontal = 50 # margin on a single side
-export var grid_height = 100
+export var grid_height = 20
 export var grid_width = 7
 
 func _ready():
@@ -26,7 +27,7 @@ func _ready():
 	block_dict["emerald"] = [0.2, 0.0]
 	block_dict["diamond"] = [0.1, 0.0]
 	block_dict["ruby"] = 	[0.2, 0.0]
-	block_dict["rock"] = 	[0.0, 0.0]
+	block_dict["rock"] = 	[0.5, 0.0]
 	
 	# initialize the dict so blocks can be picked
 	init_probabilities(block_dict)
@@ -40,6 +41,7 @@ func _ready():
 			var block = Block.new(pick_some_object(block_dict))
 			block.position.x = (block_size * block_i) + margin_horizontal
 			block.position.y = (block_size * row_i) + block_start_height
+			block_arr.append(block)
 			add_child(block)
 
 func _physics_process(_delta):
@@ -48,6 +50,19 @@ func _physics_process(_delta):
 		
 	for block in get_tree().get_nodes_in_group("blocks"):
 		block.position.y -= GameState.block_speed
+		
+	var block_count = get_tree().get_nodes_in_group("blocks").size()
+	if block_count < 80:
+		var new_start_height = block_arr[block_arr.size()-1].position.y
+		for row_i in range(grid_height):
+			for block_i in range(grid_width):
+				var block = Block.new(pick_some_object(block_dict))
+				block.position.x = (block_size * block_i) + margin_horizontal
+				block.position.y = (block_size * row_i) + new_start_height
+				block_arr.append(block)
+				add_child(block)
+
+
 
 func init_probabilities(object_types) -> void:
 	# Reset total_weight to make sure it holds the correct value after initialization
