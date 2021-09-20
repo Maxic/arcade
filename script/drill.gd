@@ -29,7 +29,7 @@ func _init(drill_level):
 	if drill_level == 1:
 		sprite.scale = Vector2(.5, .5)
 		bounce_count_max = 1
-		hp = 1		
+		hp = 1
 		collider.position = Vector2(25, 0)
 	elif drill_level == 2:
 		sprite.scale = Vector2(0.75, 0.75)
@@ -84,16 +84,19 @@ func set_level(level):
 			bounce_count = 0
 			bounce_count_max = 2
 			hp = 15
+			speed = 750
 			return
 		if level == 2:
 			scale = Vector2(1.0, 1.0)
 			bounce_count = 0
 			bounce_count_max = 1
 			hp = 5
+			speed = 1250
 			return
 		if level == 1:
 			scale = Vector2(.7, .7)
 			bounce_count = 0
 			bounce_count_max = 1
-			hp = 1	
+			hp = 1
+			speed = 4500	
 		

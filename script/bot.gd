@@ -17,9 +17,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
 		charging_time += 1
 		
-		if charging_time > 90:
+		if charging_time > 30:
 			GameState.drill_node.set_level(3)
-		elif charging_time > 60:
+		elif charging_time > 15:
 			GameState.drill_node.set_level(2)
 	
 	if Input.is_action_just_released("shoot") and not GameState.drill_node.active:

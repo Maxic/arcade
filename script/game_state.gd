@@ -3,6 +3,7 @@ extends Node
 var score
 var dead
 var block_speed
+var bg_speed
 var drill_node
 var drill_pos
 var drill_rotation
@@ -13,5 +14,6 @@ func _ready():
 
 func reset():
 	score = 0
-	block_speed = .5
+	block_speed = 1
+	bg_speed = (0.01 * block_speed)
 	dead = false
