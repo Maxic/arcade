@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/block_detector.gd" type="Script" id=1]
+[ext_resource path="res://script/block_detector.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 448.816, 275.701 )
+extents = Vector2( 440, 300 )
 
 [node name="block_detector" type="Node2D"]
 script = ExtResource( 1 )

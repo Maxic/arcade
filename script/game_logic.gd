@@ -27,7 +27,7 @@ func _ready():
 	block_dict["emerald"] = [0.2, 0.0]
 	block_dict["diamond"] = [0.1, 0.0]
 	block_dict["ruby"] = 	[0.2, 0.0]
-	block_dict["rock"] = 	[0.5, 0.0]
+	block_dict["rock"] = 	[0.8, 0.0]
 	
 	# initialize the dict so blocks can be picked
 	init_probabilities(block_dict)
@@ -53,7 +53,7 @@ func _physics_process(_delta):
 		
 	var block_count = get_tree().get_nodes_in_group("blocks").size()
 	if block_count < 80:
-		var new_start_height = block_arr[block_arr.size()-1].position.y
+		var new_start_height = block_arr[block_arr.size()-1].position.y + 140
 		for row_i in range(grid_height):
 			for block_i in range(grid_width):
 				var block = Block.new(pick_some_object(block_dict))

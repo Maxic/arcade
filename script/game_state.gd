@@ -15,6 +15,5 @@ func _ready():
 
 func reset():
 	score = 0
-	block_speed = 0.1
-	bg_speed = (0.01 * block_speed)
+	block_speed = 0.5
 	dead = false
