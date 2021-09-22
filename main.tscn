@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://script/game_logic.gd" type="Script" id=1]
 [ext_resource path="res://scenes/bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/shake_cam.gd" type="Script" id=3]
 [ext_resource path="res://assets/light.png" type="Texture" id=4]
 [ext_resource path="res://script/score_label.gd" type="Script" id=5]
+[ext_resource path="res://scenes/block_detector.tscn" type="PackedScene" id=6]
 [ext_resource path="res://script/area_up.gd" type="Script" id=7]
 [ext_resource path="res://script/block_speed_timer.gd" type="Script" id=8]
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=9]
@@ -115,6 +116,9 @@ position = Vector2( 387.503, 362.864 )
 z_index = 1
 
 [node name="background" parent="." instance=ExtResource( 11 )]
+
+[node name="block_detector" parent="." instance=ExtResource( 6 )]
+position = Vector2( 542.891, 882.595 )
 
 [connection signal="area_entered" from="area_up" to="area_up" method="_on_area_up_area_entered"]
 [connection signal="timeout" from="block_speed_timer" to="block_speed_timer" method="_on_block_speed_timer_timeout"]

@@ -84,6 +84,8 @@ func _physics_process(delta):
 	if destroyed_by_laser:
 		sprite.material = laser_transition_material 
 		if collider:
+			if get_node("damaged_block"):
+				$damaged_block.queue_free()
 			collider.queue_free()
 			collider = null
 		cutoff += LASER_TRANSISTION_SPEED * GameState.block_speed

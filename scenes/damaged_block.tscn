@@ -2,7 +2,7 @@
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 2
-light_mode = 1
+light_mode = 2
 
 [sub_resource type="OpenSimplexNoise" id=2]
 octaves = 1
@@ -11,8 +11,8 @@ persistence = 0.775
 lacunarity = 1.91
 
 [sub_resource type="NoiseTexture" id=3]
-width = 140
-height = 140
+width = 130
+height = 130
 seamless = true
 noise = SubResource( 2 )
 
@@ -20,7 +20,7 @@ noise = SubResource( 2 )
 z_index = 100
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.137255 )
+modulate = Color( 1, 1, 1, 0.235294 )
 material = SubResource( 1 )
 margin_left = 0.890869
 margin_top = 0.8909
