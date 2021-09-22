@@ -3,7 +3,7 @@ extends Node2D
 var block_speed
 var no_blocks = false
 
-func _process(delta):
+func _process(_delta):
 	var theres_blocks = $detection_area.get_overlapping_areas()
 	if !theres_blocks:
 		if !no_blocks:

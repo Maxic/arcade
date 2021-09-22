@@ -6,7 +6,7 @@ var timer = 0
 func _ready():
 	add_to_group("explosion")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if timer == 5:
 		$explosion_collider.disabled = false
 	

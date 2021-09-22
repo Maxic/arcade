@@ -15,8 +15,6 @@ var gem_emerald_scene = preload("res://scenes/gem_emerald.tscn")
 var collider_scene = preload("res://scenes/block_collider.tscn")
 var damaged_block_scene = preload("res://scenes/damaged_block.tscn")
 
-var damaged_block
-
 var dirt_particles_scene = preload("res://scenes/dirt_block_particles.tscn")
 var explosion_particles_scene = preload("res://scenes/explosion.tscn")
 
@@ -80,7 +78,7 @@ func _init(block_type):
 	# add children
 	add_child(sprite)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if destroyed_by_laser:
 		sprite.material = laser_transition_material 
 		if collider:
@@ -101,7 +99,7 @@ func damage(body):
 		block_hp -= 1
 		body.hp -= 1
 		if block_hp != 0:
-			body.recoil()
+			body.recoil = true
 			add_child(damaged_block)
 		
 func destroy(object):

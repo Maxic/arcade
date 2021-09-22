@@ -73,10 +73,6 @@ func _physics_process(delta):
 			rotation = velocity.angle()
 			bounce_count += 1
 
-
-func recoil():
-	recoil = true	
-
 func set_level(level):
 	if not active:
 		if level == 3:

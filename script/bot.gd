@@ -7,7 +7,7 @@ func _ready():
 	var y_pos = (get_viewport().size.y - get_viewport().size.y) + 180
 	global_position = Vector2(x_pos, y_pos)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if GameState.dead:
 		return
 	
