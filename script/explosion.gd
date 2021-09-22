@@ -26,4 +26,4 @@ func _on_explosion_area_entered(area):
 	var block = area.get_parent()
 	
 	if block.is_in_group("blocks"):
-		block.destroy(self)
+		block.call_deferred("destroy", self)
