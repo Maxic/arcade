@@ -14,12 +14,14 @@ var bounce_count = 0
 var bounce_count_max
 var hp
 var recoil
+var returning = false
 var active = false
 var charging_time = 0
+var collider
 
 # Feature flags for functionality (upgrades)
-var level_2_upgrade = false
-var level_3_upgrade = false
+var level_2_upgrade = true	
+var level_3_upgrade = true
 
 func _init():
 	add_to_group("drill")
@@ -30,7 +32,7 @@ func _init():
 	sprite.rotation_degrees = 90
 	
 	# Add collider node
-	var collider = CollisionShape2D.new()
+	collider = CollisionShape2D.new()
 	var shape = CircleShape2D.new()
 	shape.radius = 10
 	collider.shape = shape
@@ -42,33 +44,35 @@ func _init():
 func _physics_process(delta):
 	if GameState.paused:
 		return
-	
+		
+	# Get input for player
 	get_input()
 	
 	if not active:
 		if abs(global_position.y - dril_pos_node.drill_pos.y) < 20:
+			returning = false
 			global_position = lerp(global_position, dril_pos_node.drill_pos, .9)
 		else:
 			global_position = lerp(global_position, dril_pos_node.drill_pos, .15)
 		rotation_degrees = dril_pos_node.rotation_degrees
 	
 	if hp == 0 or bounce_count >= bounce_count_max:
+		returning = true
 		active = false
 		reset()
 		
-	if active:
+	if active and not returning:
 		do_movement(delta)
 
 func get_input():
 	if Input.is_action_pressed("shoot"):
 		charging_time += 1
-		
 		if charging_time > 30:
 			set_level(3)
 		elif charging_time > 15:
 			set_level(2)
 	
-	if Input.is_action_just_released("shoot") and not active:
+	if Input.is_action_just_released("shoot") and not active and not returning:
 		if get_viewport().get_mouse_position().y >= 370:
 			active = true
 			charging_time = 0
@@ -76,7 +80,7 @@ func get_input():
 func do_movement(delta):
 	velocity = speed * transform.x * delta
 	if recoil:
-		velocity *= -2
+		velocity *= -3
 		recoil = false
 	var collision_info = move_and_collide(velocity)
 	
@@ -92,21 +96,22 @@ func set_level(level):
 			bounce_count = 0
 			bounce_count_max = 2
 			hp = 15
-			speed = 500
+			speed = 200
+			collider.shape.radius = 40
 			return
 		if level == 2 and level_2_upgrade:
 			scale = Vector2(1.0, 1.0)
 			bounce_count = 0
 			bounce_count_max = 1
 			hp = 5
-			speed = 1250
+			speed = 1000
 			return
 		if level == 1:
 			scale = Vector2(.7, .7)
 			bounce_count = 0
 			bounce_count_max = 1
 			hp = 1
-			speed = 4500	
+			speed = 3000	
 		
 func reset():
 	set_level(1)
