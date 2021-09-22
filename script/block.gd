@@ -82,7 +82,7 @@ func _physics_process(_delta):
 	if destroyed_by_laser:
 		sprite.material = laser_transition_material 
 		if collider:
-			if get_node("damaged_block"):
+			if self.has_node("damaged_block"):
 				$damaged_block.queue_free()
 			collider.queue_free()
 			collider = null
