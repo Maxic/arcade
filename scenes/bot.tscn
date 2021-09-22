@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://script/drill_orbit.gd" type="Script" id=1]
 [ext_resource path="res://scenes/drill_sprite.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/newbot.png" type="Texture" id=3]
-[ext_resource path="res://script/bot.gd" type="Script" id=4]
 [ext_resource path="res://assets/robody.png" type="Texture" id=5]
 
-[node name="head" type="Sprite"]
+[node name="bot" type="Sprite"]
 light_mask = 0
+position = Vector2( 540, 180 )
 texture = ExtResource( 3 )
-script = ExtResource( 4 )
 
 [node name="body" type="Sprite" parent="."]
 self_modulate = Color( 1.2, 1.2, 1.2, 1 )

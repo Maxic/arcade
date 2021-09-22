@@ -1,6 +1,7 @@
 extends Node2D
 
+var drill_pos
+
 func _physics_process(_delta):
-	GameState.drill_pos = $drill_static.global_position
-	GameState.drill_rotation = rotation_degrees
+	drill_pos = $drill_static.global_position
 	look_at(get_viewport().get_mouse_position())

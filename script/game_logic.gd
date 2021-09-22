@@ -11,23 +11,24 @@ var block_dict = {}
 
 # export variables
 export var margin_horizontal = 50 # margin on a single side
-export var grid_height = 20
+export var grid_height = 10
 export var grid_width = 7
 
 func _ready():
-	# add drill to world
-	var drill = Drill.new(2)
+	# Add drill to world
+	var drill = Drill.new()
 	drill.name = "drill"
-	GameState.drill_node = drill
-	drill.set_level(1)
 	add_child(drill)
 	
 	# Populate dict with [roll_weight, acc_weight]
+	# Roll weight: The weight of the item being chosen
+	# Accumulated weight: To be filled in in init_probabilities
+	# Roll weight / total weight is the chance of being chosen
 	block_dict["dirt"] = 	[3.0, 0.0]
 	block_dict["emerald"] = [0.2, 0.0]
 	block_dict["diamond"] = [0.1, 0.0]
 	block_dict["ruby"] = 	[0.2, 0.0]
-	block_dict["rock"] = 	[0.8, 0.0]
+	block_dict["rock"] = 	[0.5, 0.0]
 	
 	# initialize the dict so blocks can be picked
 	init_probabilities(block_dict)
@@ -36,6 +37,7 @@ func _ready():
 	block_start_height = get_viewport().size.y / 2
 	block_size = (get_viewport().size.x - (margin_horizontal*2)) / grid_width
 	
+	# Initial set of blocks
 	for row_i in range(grid_height):
 		for block_i in range(grid_width):
 			var block = Block.new(pick_some_object(block_dict))
@@ -45,12 +47,15 @@ func _ready():
 			add_child(block)
 
 func _physics_process(_delta):
-	if GameState.dead:
+	# Don't proceed with game when player is dead
+	if GameState.dead or GameState.paused:
 		return
-		
+	
+	# Block movement
 	for block in get_tree().get_nodes_in_group("blocks"):
 		block.position.y -= GameState.block_speed
 		
+	# Spawn new blocks when there are less than 80 blocks in the world
 	var block_count = get_tree().get_nodes_in_group("blocks").size()
 	if block_count < 80:
 		var new_start_height = block_arr[block_arr.size()-1].position.y + 140
@@ -61,8 +66,6 @@ func _physics_process(_delta):
 				block.position.y = (block_size * row_i) + new_start_height
 				block_arr.append(block)
 				add_child(block)
-
-
 
 func init_probabilities(object_types) -> void:
 	# Reset total_weight to make sure it holds the correct value after initialization

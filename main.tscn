@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://script/game_logic.gd" type="Script" id=1]
 [ext_resource path="res://scenes/bot.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/ds_digital/DS-DIGI.TTF" type="DynamicFontData" id=10]
 [ext_resource path="res://scenes/cave_background.tscn" type="PackedScene" id=11]
+[ext_resource path="res://script/buy_button.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 960 )
@@ -89,8 +90,6 @@ layer = 10
 [node name="ui" type="Control" parent="ui_layer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -107,6 +106,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="buy_button" type="Button" parent="ui_layer/ui"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 144.0
+margin_right = -57.0
+margin_bottom = 180.0
+script = ExtResource( 12 )
+
 [node name="block_speed_timer" type="Timer" parent="."]
 autostart = true
 script = ExtResource( 8 )
@@ -121,4 +129,5 @@ z_index = 1
 position = Vector2( 540, 716 )
 
 [connection signal="area_entered" from="area_up" to="area_up" method="_on_area_up_area_entered"]
+[connection signal="pressed" from="ui_layer/ui/buy_button" to="ui_layer/ui/buy_button" method="_on_buy_button_pressed"]
 [connection signal="timeout" from="block_speed_timer" to="block_speed_timer" method="_on_block_speed_timer_timeout"]
