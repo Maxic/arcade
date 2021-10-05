@@ -41,9 +41,9 @@ texture = ExtResource( 14 )
 region_rect = Rect2( 0, 0, 264, 272 )
 modulate_color = Color( 0.658824, 0.658824, 0.658824, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=8]
 texture = ExtResource( 14 )
 region_rect = Rect2( 0, 0, 264, 272 )
 
@@ -136,8 +136,8 @@ margin_right = -101.577
 margin_bottom = 178.511
 custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 8 )
-custom_styles/normal = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 action_mode = 0
 script = ExtResource( 12 )
 __meta__ = {
