@@ -19,10 +19,6 @@ var active = false
 var charging_time = 0
 var collider
 
-# Feature flags for functionality (upgrades)
-var level_2_upgrade = true	
-var level_3_upgrade = true
-
 func _init():
 	add_to_group("drill")
 	set_level(1)
@@ -91,7 +87,7 @@ func do_movement(delta):
 
 func set_level(level):
 	if not active:
-		if level == 3 and level_3_upgrade:
+		if level == 3 and Upgrades.drill_level_3:
 			scale = Vector2(1.5, 1.5)
 			bounce_count = 0
 			bounce_count_max = 2
@@ -99,7 +95,7 @@ func set_level(level):
 			speed = 200
 			collider.shape.radius = 40
 			return
-		if level == 2 and level_2_upgrade:
+		if level == 2 and Upgrades.drill_level_2:
 			scale = Vector2(1.0, 1.0)
 			bounce_count = 0
 			bounce_count_max = 1

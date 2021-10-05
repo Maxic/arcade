@@ -32,6 +32,7 @@ run/main_scene="res://main.tscn"
 [autoload]
 
 GameState="*res://script/game_state.gd"
+Upgrades="*res://script/upgrades.gd"
 
 [display]
 

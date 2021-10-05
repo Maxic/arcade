@@ -1,5 +1,6 @@
 extends Node
 
+# overall gamestate
 var score
 var dead
 var block_speed
@@ -16,3 +17,4 @@ func reset():
 	block_speed = 0.5
 	dead = false
 	paused = false
+	

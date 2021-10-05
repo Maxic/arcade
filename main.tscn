@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://script/game_logic.gd" type="Script" id=1]
 [ext_resource path="res://scenes/bot.tscn" type="PackedScene" id=2]
@@ -12,7 +12,8 @@
 [ext_resource path="res://assets/ds_digital/DS-DIGI.TTF" type="DynamicFontData" id=10]
 [ext_resource path="res://scenes/cave_background.tscn" type="PackedScene" id=11]
 [ext_resource path="res://script/buy_button.gd" type="Script" id=12]
-[ext_resource path="res://assets/powerup_box_drill_lvl2.png" type="Texture" id=13]
+[ext_resource path="res://scenes/buy_screen.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/shop.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 960 )
@@ -31,18 +32,20 @@ use_filter = true
 font_data = ExtResource( 10 )
 
 [sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 13 )
-region_rect = Rect2( 0, 0, 288, 289 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 264, 272 )
 modulate_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 
 [sub_resource type="StyleBoxTexture" id=6]
-texture = ExtResource( 13 )
-region_rect = Rect2( 0, 0, 288, 289 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 264, 272 )
 modulate_color = Color( 0.658824, 0.658824, 0.658824, 1 )
 
+[sub_resource type="StyleBoxEmpty" id=8]
+
 [sub_resource type="StyleBoxTexture" id=7]
-texture = ExtResource( 13 )
-region_rect = Rect2( 0, 0, 288, 289 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 264, 272 )
 
 [node name="main" type="Node2D"]
 script = ExtResource( 1 )
@@ -124,17 +127,22 @@ __meta__ = {
 [node name="buy_button" type="Button" parent="ui_layer/ui"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -230.517
-margin_top = 64.3467
-margin_right = -90.5168
-margin_bottom = 204.347
+margin_left = -241.577
+margin_top = 38.5107
+margin_right = -101.577
+margin_bottom = 178.511
 custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 7 )
+action_mode = 0
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="buy_screen" parent="ui_layer/ui" instance=ExtResource( 13 )]
+visible = false
 
 [node name="block_speed_timer" type="Timer" parent="."]
 autostart = true
