@@ -1,21 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://script/drill_orbit.gd" type="Script" id=1]
 [ext_resource path="res://scenes/drill_sprite.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/newbot.png" type="Texture" id=3]
-[ext_resource path="res://assets/robody.png" type="Texture" id=5]
+[ext_resource path="res://assets/robody.png" type="Texture" id=3]
+[ext_resource path="res://script/gear.gd" type="Script" id=4]
+[ext_resource path="res://assets/robogear.png" type="Texture" id=5]
 
 [node name="bot" type="Sprite"]
 light_mask = 0
-position = Vector2( 540, 180 )
+position = Vector2( 527, 160 )
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
-
-[node name="body" type="Sprite" parent="."]
-self_modulate = Color( 1.2, 1.2, 1.2, 1 )
-light_mask = 0
-position = Vector2( 0, -110 )
-z_index = -1
-texture = ExtResource( 5 )
 
 [node name="drill_orbit" type="Node2D" parent="."]
 position = Vector2( 0, 100 )
@@ -27,3 +22,17 @@ position = Vector2( 80, 0 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 z_index = -10
+
+[node name="gear_left" type="Sprite" parent="."]
+position = Vector2( -626.975, -90 )
+scale = Vector2( 1, 1 )
+z_index = -1
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[node name="gear_right" type="Sprite" parent="."]
+position = Vector2( 662.253, -90 )
+scale = Vector2( 1, 1 )
+z_index = -1
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
