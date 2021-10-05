@@ -124,6 +124,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="buy_screen" parent="ui_layer/ui" instance=ExtResource( 13 )]
+visible = false
+
 [node name="buy_button" type="Button" parent="ui_layer/ui"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -140,9 +143,6 @@ script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="buy_screen" parent="ui_layer/ui" instance=ExtResource( 13 )]
-visible = false
 
 [node name="block_speed_timer" type="Timer" parent="."]
 autostart = true
