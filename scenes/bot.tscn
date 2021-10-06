@@ -25,14 +25,12 @@ z_index = -10
 
 [node name="gear_left" type="Sprite" parent="."]
 position = Vector2( -626.975, -90 )
-scale = Vector2( 1, 1 )
 z_index = -1
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
 [node name="gear_right" type="Sprite" parent="."]
 position = Vector2( 662.253, -90 )
-scale = Vector2( 1, 1 )
 z_index = -1
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
