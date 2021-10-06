@@ -2,6 +2,7 @@ extends Control
 
 # preload assets
 var bought_state_level_2 = preload("res://assets/powerup_box_drill_lvl2_bought.png")
+var bought_state_level_3 = preload("res://assets/powerup_box_drill_lvl3_bought.png")
 
 onready var level_2 = get_node("MarginContainer/v_box/level_2")
 onready var level_3 = get_node("MarginContainer/v_box/level_3")
@@ -12,7 +13,7 @@ func _physics_process(delta):
 	else:
 		level_2.disabled = true
 		
-	if GameState.score > 10000:
+	if GameState.score > 10000 and Upgrades.drill_level_3 == false:
 		level_3.disabled = false
 	else:
 		level_3.disabled = true
@@ -24,3 +25,5 @@ func _on_level_2_pressed():
 
 func _on_level_3_pressed():
 	Upgrades.drill_level_3 = true
+	var disabled_stylebox = level_3.get_stylebox('disabled')
+	disabled_stylebox.texture = bought_state_level_3
