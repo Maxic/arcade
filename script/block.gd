@@ -114,13 +114,16 @@ func destroy(object):
 		particles.position = Vector2(global_position.x + 70, global_position.y + 70)
 		particles.emitting = true
 		get_parent().add_child(particles)
+		
+		if type != "dirt":
+			set_indicators(type)
 			
 		# gem 
 		if gem_scene:
 			var gem = gem_scene.instance()
 			gem.position = Vector2(global_position.x + 70, global_position.y + 70)
 			get_parent().add_child(gem)
-		
+			
 		GameState.score += score
 		
 		queue_free()
@@ -137,7 +140,9 @@ func destroy(object):
 		particles.position = Vector2(global_position.x + 70, global_position.y + 70)
 		particles.emitting = true
 		get_parent().add_child(particles)
-			
+		
+		if type != "dirt":
+			set_indicators(type)	
 		# gem 
 		if gem_scene:
 			var gem = gem_scene.instance()
@@ -147,3 +152,9 @@ func destroy(object):
 		GameState.score += score
 		
 		queue_free()
+		
+func set_indicators(gem_color):
+	var indicators = get_node("/root/main/bot/indicators")
+	indicators.update_colors(gem_color)
+	
+	
